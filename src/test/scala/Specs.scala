@@ -14,7 +14,7 @@ class regexwithREX extends Specification {
 
   "p01" should {
         "Fail because the pattern must match at least three a's" {
-            "a" *> 3 !~~= "aa"
+            "a" *> 3 !~~= "aa" must_== false
         }
     }
 }
