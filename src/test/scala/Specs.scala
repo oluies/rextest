@@ -13,7 +13,7 @@ import com.digitaldoodles.rex.patterns._
 class regexwithREX extends Specification {
 
   "p01" should {
-        "Fail because the pattern must match at least three a's" {
+        "Fail because the pattern must match at least three a's" in {
             "a" *> 3 !~~= "aa" must_== false
         }
     }
