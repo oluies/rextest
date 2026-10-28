@@ -19,7 +19,7 @@ scalaVersion := "2.9.3"
 // Add multiple dependencies
 libraryDependencies ++= Seq(
     "junit" % "junit" % "4.13.2" % "test",
-    "org.specs2" %% "specs2" % "1.3" % "test",
+    "org.specs2" %% "specs2" % "1.8.2" % "test",
     "org.specs2" %% "specs2-scalaz-core" % "6.0.RC2" % "test",
     "com.digitaldoodles" %% "rex" % "0.7.0.1" 
 )
