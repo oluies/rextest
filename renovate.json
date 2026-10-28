@@ -2,5 +2,47 @@
   "$schema": "https://docs.renovatebot.com/renovate-schema.json",
   "extends": [
     "config:recommended"
+  ],
+  "packageRules": [
+    {
+      "description": [
+        "PIN. scalaVersion is held at 2.9.0-1 because com.digitaldoodles:rex",
+        "-- the library this repository exists to exercise -- is only",
+        "cross-published for Scala 2.9.0-1 and 2.8.1. There is no rex_2.9.3:",
+        "https://repo1.maven.org/maven2/com/digitaldoodles/rex_2.9.3/ returns",
+        "404, while rex_2.9.0-1 returns 200.",
+        "",
+        "This is not theoretical. Renovate proposed scalaVersion 2.9.0-1 ->",
+        "2.9.3 and it was merged, which silently broke dependency resolution:",
+        "`%%` then looks for rex_2.9.3, which does not exist. The repository has",
+        "no CI (no .github/workflows at all), so nothing reported the breakage.",
+        "",
+        "Moving off 2.9.0-1 means dropping rex or cross-building it first, so it",
+        "is a decision about the project, not a dependency bump."
+      ],
+      "matchPackageNames": ["scala", "org.scala-lang:scala-library", "org.scala-lang:scala-compiler"],
+      "enabled": false
+    },
+    {
+      "description": [
+        "PIN. specs2-scalaz-core is held at 6.0.RC2 because that is the only",
+        "version published for the _2.9.0-1 suffix. 6.0.1 exists only for other",
+        "cross-builds (_2.9.0, _2.9.3, _2.10.x), so Renovate's offer of 6.0.1",
+        "(PR #8) does not resolve here."
+      ],
+      "matchPackageNames": ["org.specs2:specs2-scalaz-core"],
+      "enabled": false
+    },
+    {
+      "description": [
+        "PIN. rex is held at 0.7.0.1, the newest version of the _2.9.0-1",
+        "cross-build. Renovate offered 0.701 (PR #8/#9), but that is not a newer",
+        "release -- it is the latest version of the SEPARATE _2.8.1 cross-build.",
+        "Maven Central lists rex_2.9.0-1 -> 0.7.0.1 and rex_2.8.1 -> 0.701, and",
+        "Renovate's version ordering reads 0.701 as greater than 0.7.0.1."
+      ],
+      "matchPackageNames": ["com.digitaldoodles:rex"],
+      "enabled": false
+    }
   ]
 }
