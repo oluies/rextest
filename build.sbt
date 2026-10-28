@@ -21,7 +21,7 @@ libraryDependencies ++= Seq(
     "junit" % "junit" % "4.8" % "test",
     "org.specs2" %% "specs2" % "1.3" % "test",
     "org.specs2" %% "specs2-scalaz-core" % "6.0.RC2" % "test",
-    "com.digitaldoodles" %% "rex" % "0.7" 
+    "com.digitaldoodles" %% "rex" % "0.7.0.1" 
 )
 
 //def specs2Framework = new TestFramework("org.specs2.runner.SpecsFramework")
